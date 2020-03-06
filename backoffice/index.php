@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+session_start();
 //mdp crée avec password_hash("pass",PASSWORD_DEFAULT);
 //require tout pour test le mdp
 require '../src/AdminIdentification.php';
@@ -12,12 +13,11 @@ require '../src/AdminIdentification.php';
     <title>Identification</title>
 </head>
 <body>
-    <form>
-        <input type="text" name="username"/>
-        <input type="password" name="password"/>
-        <input type="submit" value="Submit"/>
-    </form>
-    
+        <input type="text" name="username" id="username-identification"/>
+        <input type="password" name="password" id="password-identification"/>
+        <input type="submit" value="Submit" id="admin-identification"/>
 
+
+<script type="text/javascript" src="./js/getPass.js"></script>
 </body>
 </html>

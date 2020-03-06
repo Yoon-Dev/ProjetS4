@@ -1,4 +1,6 @@
 <?php
+$_SESSION['acces'] = false;
+
 require '../utils/conn.php';
 
 chargerclass('../class/', 'Manager');
