@@ -14,7 +14,7 @@ class Manager{
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°° 
     public function getAdminPassword(string $username, string $pass)
     {
-    $res;
+    $res = null;
     // get the admin password for admin identification
         if(!empty($username)){
             $q = $this->_conn->prepare('SELECT password FROM Admin WHERE username = :username');
@@ -38,8 +38,8 @@ class Manager{
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
     public function getPageModel()
     {
-    $page;
-    //get the data and create the page model
+    $page = null;
+    //get the data and create the PAGE model
         $q = $this->_conn->prepare('SELECT * FROM `Page`');
         $q->execute();
         
@@ -52,6 +52,37 @@ class Manager{
 
     return $page;
     
+    }
+// °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
+    public function getAvisModel()
+    {
+    $avis = [];
+    //get the data and create the AVIS model
+        $q = $this->_conn->prepare('SELECT * FROM `Avis`');
+        $q->execute();
+        
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+        {
+    
+          $avis[] = new Avis($donnees);
+    
+        }
+
+    return $avis;
+    
+    }
+// °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
+    public function updateSingleRow(string $table, string $type, string $value)
+    {
+    $res = null;
+    //get the data and create the page model
+        $q = $this->_conn->prepare("UPDATE {$table} SET {$type} = :valuee WHERE id = :id");
+        $q->bindValue(':id', 1);
+        $q->bindValue(':valuee', $value);
+        $q->execute();
+
+    return $res;
+
     }
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°       
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°

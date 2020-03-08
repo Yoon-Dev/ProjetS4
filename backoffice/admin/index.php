@@ -3,6 +3,8 @@ session_start();
 require "../../utils/checkAcces.php";
 require '../../utils/conn.php';
 checkAcces("../");
+chargerclass("../../class/", "Manager");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +18,9 @@ checkAcces("../");
     
 <div>
   <?php require "./component/page.php"?>  
+</div>
+<div>
+  <?php require "./component/avis.php"?>  
 </div>
 
     
