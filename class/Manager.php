@@ -14,7 +14,7 @@ class Manager{
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°° 
     public function getAdminPassword(string $username, string $pass)
     {
-    $res;
+    $res = null;
     // get the admin password for admin identification
         if(!empty($username)){
             $q = $this->_conn->prepare('SELECT password FROM Admin WHERE username = :username');
@@ -38,7 +38,7 @@ class Manager{
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
     public function getPageModel()
     {
-    $page;
+    $page = null;
     //get the data and create the page model
         $q = $this->_conn->prepare('SELECT * FROM `Page`');
         $q->execute();
@@ -52,6 +52,19 @@ class Manager{
 
     return $page;
     
+    }
+// °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
+    public function updateSingleRow(string $table, string $type, string $value)
+    {
+    $res = null;
+    //get the data and create the page model
+        $q = $this->_conn->prepare("UPDATE {$table} SET {$type} = :valuee WHERE ID = :id");
+        $q->bindValue(':id', 1);
+        $q->bindValue(':valuee', $value);
+        $q->execute();
+
+    return $res;
+
     }
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°       
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
