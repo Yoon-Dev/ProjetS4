@@ -7,8 +7,7 @@ window.onload = () => {
         console.log(el)
         el.addEventListener("click", e => {
             let rownbr = 1
-            
-            
+                
             const id = e.currentTarget.getAttribute(('data-input'))
             console
             const input = document.querySelector(id)
@@ -21,7 +20,6 @@ window.onload = () => {
             const type = input.getAttribute('name')
             console.log(value, type, input, rownbr, bdd, type)
             sendData(`../../src/updateSingleRow.php?bdd=${bdd}&type=${type}&rownbr=${rownbr}`, value)
-
             
         })
     })
