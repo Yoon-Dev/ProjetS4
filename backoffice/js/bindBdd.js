@@ -10,6 +10,7 @@ window.onload = () => {
             
             
             const id = e.currentTarget.getAttribute(('data-input'))
+            console
             const input = document.querySelector(id)
             if(input.getAttribute('data-rownbr')){
                 rownbr = input.getAttribute('data-rownbr')
@@ -18,20 +19,23 @@ window.onload = () => {
 
             const bdd = input.getAttribute('data-bdd')
             const type = input.getAttribute('name')
-            
-            console.log(id, input, value, bdd, type)
-            fetch(`../../src/updateSingleRow.php?bdd=${bdd}&type=${type}&rownbr=${rownbr}`, {
-                method: 'POST', // *GET, POST, PUT, DELETE, etc.
-                mode: 'same-origin', // no-cors, *cors, same-origin
-                // test to checkAcces on the endpoint
-                headers: {
-                  'Content-Type': 'multipart/form-data'
-                },
-                referrerPolicy: 'no-referrer', // no-referrer, *client
-                body: value // body data type must match "Content-Type" header
-            });
+            console.log(value, type, input, rownbr, bdd, type)
+            sendData(`../../src/updateSingleRow.php?bdd=${bdd}&type=${type}&rownbr=${rownbr}`, value)
+
             
         })
     })
+
+    async function sendData(url, data) {
+        const formData  = new FormData();
+      
+        formData.append("value", data);
+      
+        await fetch(url, {
+          method: 'POST',
+          body: formData
+        }); 
+        // ...
+    }
     
 }

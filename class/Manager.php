@@ -72,12 +72,12 @@ class Manager{
     
     }
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
-    public function updateSingleRow(string $table, string $type, string $value)
+    public function updateSingleRow(string $table, string $type, string $value, int $rownbr)
     {
     $res = null;
     //get the data and create the page model
         $q = $this->_conn->prepare("UPDATE {$table} SET {$type} = :valuee WHERE id = :id");
-        $q->bindValue(':id', 1);
+        $q->bindValue(':id', $rownbr);
         $q->bindValue(':valuee', $value);
         $q->execute();
 

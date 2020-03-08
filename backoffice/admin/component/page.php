@@ -9,10 +9,10 @@ $page = $manager->getPageModel();
     <button class="btn-update" data-input="#presentation">Update</button>
     <br>
     <img src="<?php echo $page->getImg1Path("../../.");?>" style="width:50px;"/><br>
-    <form target="_blank" action="../../src/updateSingleRow.php?bdd=Page&type=img1" method="post" enctype='multipart/form-data' redirect>
+    <!-- <form target="_blank" action="../../src/updateSingleRow.php?bdd=Page&type=img1" method="post" enctype='multipart/form-data' redirect>
         <input type="file" id="img1" name="img1" data-bdd="Page" value="<?php echo $page->img1();?>"/>
         <input type="submit" value="Envoyer">
-    </form>
+    </form> -->
     <br>
     <input type="text" id="numero" name="numero" data-bdd="Page" value="<?php echo $page->numero();?>"/>
     <button class="btn-update" data-input="#numero">Update</button>
