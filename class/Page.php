@@ -1,12 +1,14 @@
 <?php
 // Model de donnée à réutiliser sans modération
-class Taches{
+class Page{
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     // caratéristique
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    protected   $_id,
-                $_nom,
-                $_detail;
+    protected   $_presentation,
+                $_img1,
+                $_numero,
+                $_email,
+                $_adresse;
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
     // CONSTRUCT
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
@@ -21,10 +23,6 @@ class Taches{
     {
         foreach ($data as $key => $value){
             $method='set'.ucfirst($key);
-    // convertit les str censée etre des int en int
-            if($key == "id"){
-                $value = intval($value);
-            }
             if (method_exists($this, $method)){
                 $this->$method($value);
             }
@@ -33,24 +31,23 @@ class Taches{
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     // fonctionnalité
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    public function SweetLimite()
-    {
-        $ugly = $this->limite();
-        $ugly = substr($ugly, 5, 5);
-        $this->_limite = $ugly;
-    }
+    // code
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
     // GETTER
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
-    public function id(){return$this->_id;}
-    public function nom(){return$this->_nom;}
-    public function detail(){return$this->_detail;}
+    public function presentation(){return$this->_presentation;}
+    public function img1(){return$this->_img1;}
+    public function numero(){return$this->_numero;}
+    public function email(){return$this->_email;}
+    public function adresse(){return$this->_adresse;}
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
     // SETTER
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
-    public function setId($id){if(is_int($id)){$this->_id = $id;}}
-    public function setNom($nom){if(is_string($nom)){$this->_nom = $nom;}}
-    public function setDetail($detail){if(!empty($detail) && is_string($detail)){$this->_detail = $detail;}}
+    public function setPresentation($presentation){if(!empty($presentation) && is_string($presentation)){$this->_presentation = $presentation;}}
+    public function setImg1($img1){if(!empty($img1) && is_string($img1)){$this->_img1 = $img1;}}
+    public function setNumero($numero){if(!empty($numero) && is_string($numero)){$this->_numero = $numero;}}
+    public function setEmail($email){if(!empty($email) && is_string($email)){$this->_email = $email;}}
+    public function setAdresse($adresse){if(!empty($adresse) && is_string($adresse)){$this->_adresse = $adresse;}}
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
 // fin CLASSE
 }

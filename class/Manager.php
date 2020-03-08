@@ -11,12 +11,6 @@ class Manager{
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // fonctionnalité
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-    public function test()
-    {
-    //test the class
-    echo "Ok ta mere";
-    }
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°° 
     public function getAdminPassword(string $username, string $pass)
     {
@@ -41,7 +35,24 @@ class Manager{
         }
     return json_encode($res);
     }
+// °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
+    public function getPageModel()
+    {
+    $page;
+    //get the data and create the page model
+        $q = $this->_conn->prepare('SELECT * FROM `Page`');
+        $q->execute();
+        
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+        {
     
+          $page = new Page($donnees);
+    
+        }
+
+    return $page;
+    
+    }
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°       
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
     // SETTER

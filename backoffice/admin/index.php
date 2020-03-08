@@ -1,6 +1,7 @@
 <?php
 session_start();
 require "../../utils/checkAcces.php";
+require '../../utils/conn.php';
 checkAcces("../");
 ?>
 <!DOCTYPE html>
@@ -12,8 +13,12 @@ checkAcces("../");
     <title>Identification</title>
 </head>
 <body>
+    
+<div>
+  <?php require "./component/page.php"?>  
+</div>
 
-    <h1>Content</h1>
-
+    
+<script type="text/javascript" src="../js/bindBdd.js"></script>
 </body>
 </html>
